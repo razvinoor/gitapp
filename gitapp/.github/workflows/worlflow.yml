@@ -1,0 +1,22 @@
+name: Pipelineworkflow
+
+on:
+  push:
+    branches:
+      - main
+  pull request:
+    branches:
+      - main
+jobs:
+    build:
+        name: Azure Piepline
+        runs-on: ubunut-latest
+        steps:
+        - name: Azure Pieplines Action
+          uses: Azure/pipelines@v1
+          with:
+            azure-devops-project-url: https://dev.azure.com/razvinoor/AgileProject
+            azure-pieplines-name: 'razvinoor.gitapp'
+            azure-devops-token:  ${{ secrets.AZURE_DEVOPS_TOKEN }}
+
+ 
