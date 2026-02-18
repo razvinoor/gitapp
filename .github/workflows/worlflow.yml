@@ -1,22 +1,23 @@
-name: Pipelineworkflow
+name: Trigger Azure DevOps Pipeline
 
 on:
   push:
     branches:
       - main
-  pull request:
+
+  pull_request:
     branches:
       - main
-jobs:
-    build:
-        name: Azure Piepline
-        runs-on: ubunut-latest
-        steps:
-        - name: Azure Pieplines Action
-          uses: Azure/pipelines@v1
-          with:
-            azure-devops-project-url: https://dev.azure.com/razvinoor/AgileProject
-            azure-pieplines-name: 'razvinoor.gitapp'
-            azure-devops-token:  ${{ secrets.AZURE_DEVOPS_TOKEN }}
 
- 
+jobs:
+  build:
+    name: Azure Pipeline Trigger
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Azure DevOps Pipeline
+        uses: Azure/pipelines@v1
+        with:
+          azure-devops-project-url: https://dev.azure.com/razvinoor/AgileProject
+          azure-pipeline-name: 'razvinoor.gitapp'
+          azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
